@@ -1,7 +1,6 @@
-import uuid
-from django.db import models
 from django.contrib.auth import get_user_model
-from django.utils import timezone
+from django.db import models
+import uuid
 
 User = get_user_model()
 
@@ -41,6 +40,14 @@ class Notification(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [
+            models.Index(fields=["user", "status"]),
+            models.Index(fields=["scheduled_time"]),
+            models.Index(fields=["created_at"]),
+        ]
 
     def is_retry_allowed(self):
         return self.retry_count < 3

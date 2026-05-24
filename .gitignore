@@ -1,9 +1,12 @@
 ### Django ###
-# db.sqlite3
-# media
-# .env
+db.sqlite3
+media/
+staticfiles/
+.env
 
+### Python ###
+__pycache__/
+*.py[cod]
 
-# Environments
+### Environments ###
 venv/
-venv
